@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("BasicGraphs")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("The Ohio State University")]
+[assembly: AssemblyCompany("Crawfis Software")]
 [assembly: AssemblyProduct("BasicGraphs")]
-[assembly: AssemblyCopyright("Copyright © The Ohio State University 2008")]
+[assembly: AssemblyCopyright("Copyright © 2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

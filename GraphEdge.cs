@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace OhioState.Collections.Graph
+namespace CrawfisSoftware.Collections.Graph
 {
     internal class GraphEdge<N, E> : IEdge<N,E>
     {

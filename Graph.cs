@@ -4,7 +4,7 @@ using System.Text;
 
 //[assembly: SecurityPermission(SecurityAction.RequestMinimum, Execution = true)]
 //[assembly: PermissionSet(SecurityAction.RequestOptional, Name = "Nothing")]
-namespace OhioState.Collections.Graph
+namespace CrawfisSoftware.Collections.Graph
 {
     /// <summary>
     /// A standard graph implementation of <typeparamref name="IGraph{N,E}"/>.

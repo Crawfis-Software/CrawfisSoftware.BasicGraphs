@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace CrawfisSoftware.Collections.Graph
 {
@@ -11,7 +9,7 @@ namespace CrawfisSoftware.Collections.Graph
             nodeValue = data;
         }
 
-        internal void AddEdge( GraphEdge<VertexDataType, EdgeDataType> edge )
+        internal void AddEdge(GraphEdge<VertexDataType, EdgeDataType> edge)
         {
             if (edge.FromNode == this)
             {

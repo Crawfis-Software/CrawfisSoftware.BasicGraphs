@@ -1,12 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace CrawfisSoftware.Collections.Graph
 {
-    internal class GraphEdge<N, E> : IEdge<N,E>
+    internal class GraphEdge<N, E> : IEdge<N, E>
     {
-        public GraphEdge( GraphNode<N, E> fromVertex, GraphNode<N, E> toVertex, E edgeData )
+        public GraphEdge(GraphNode<N, E> fromVertex, GraphNode<N, E> toVertex, E edgeData)
         {
             fromNode = fromVertex;
             toNode = toVertex;

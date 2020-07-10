@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 //[assembly: SecurityPermission(SecurityAction.RequestMinimum, Execution = true)]
 //[assembly: PermissionSet(SecurityAction.RequestOptional, Name = "Nothing")]
@@ -29,7 +28,7 @@ namespace CrawfisSoftware.Collections.Graph
         /// </summary>
         /// <param name="node">The internal object that the node contains.</param>
         /// <returns>A new instance of a GraphNode."/></returns>
-        public void AddNode( N node )
+        public void AddNode(N node)
         {
             if (vertexList.Contains(node))
                 throw new ArgumentException("Only Simple graphs are supported. You can not add the same vertex twice.");
@@ -46,7 +45,7 @@ namespace CrawfisSoftware.Collections.Graph
         /// <param name="from">The node label for the originating node.</param>
         /// <param name="to">The node label for the destination node.</param>
         /// <param name="edgeData">An edge label to associate with this edge.</param>
-        public void AddEdge( N from, N to, E edgeData )
+        public void AddEdge(N from, N to, E edgeData)
         {
             int fromIndex = vertexList.IndexOf(from);
             if (fromIndex == -1)
@@ -60,7 +59,7 @@ namespace CrawfisSoftware.Collections.Graph
         }
 
         #region Implementation
-        private void AddEdge( E edgeData, int fromIndex, int toIndex )
+        private void AddEdge(E edgeData, int fromIndex, int toIndex)
         {
             GraphNode<N, E> fromNode = nodeList[fromIndex];
             GraphNode<N, E> toNode = nodeList[toIndex];
@@ -68,7 +67,7 @@ namespace CrawfisSoftware.Collections.Graph
             AddEdge(edgeData, fromNode, toNode);
         }
 
-        internal void AddEdge( E edgeData, GraphNode<N, E> fromNode, GraphNode<N, E> toNode )
+        internal void AddEdge(E edgeData, GraphNode<N, E> fromNode, GraphNode<N, E> toNode)
         {
             GraphEdge<N, E> newEdge = new GraphEdge<N, E>(fromNode, toNode, edgeData);
             fromNode.AddEdge(newEdge);
@@ -174,7 +173,7 @@ namespace CrawfisSoftware.Collections.Graph
         {
             get
             {
-                foreach( GraphNode<N, E> node in nodeList)
+                foreach (GraphNode<N, E> node in nodeList)
                 {
                     foreach (GraphEdge<N, E> edge in node.EdgesOut)
                     {

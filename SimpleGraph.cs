@@ -7,13 +7,13 @@ namespace CrawfisSoftware.Collections.Graph
     /// SimpleGraph takes as input an Adjacency List and
     /// provides the IGraph wrapper around it.
     /// </summary>
-    public class SimpleGraph : IGraph<int,int>
+    public class SimpleGraph : IGraph<int, int>
     {
 
         internal struct Connection : IEdge<int, int>
         {
             private int _from, _to;
-            public Connection( int from, int to )
+            public Connection(int from, int to)
             {
                 _from = from;
                 _to = to;
@@ -42,7 +42,7 @@ namespace CrawfisSoftware.Collections.Graph
         /// Constructor.
         /// </summary>
         /// <param name="adjacencies">A list of nodes connected to each node.</param>
-        public SimpleGraph( IList<ICollection<int>> adjacencies )
+        public SimpleGraph(IList<ICollection<int>> adjacencies)
         {
             _adjacencyList = adjacencies;
         }
@@ -96,7 +96,7 @@ namespace CrawfisSoftware.Collections.Graph
         {
             get
             {
-                for (int node = 0; node < _adjacencyList.Count; node++ )
+                for (int node = 0; node < _adjacencyList.Count; node++)
                 {
                     foreach (int index in _adjacencyList[node])
                     {

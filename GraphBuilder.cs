@@ -5,13 +5,13 @@ namespace CrawfisSoftware.Collections.Graph
 {
     public class GraphBuilder : GraphBuilder<object, object>
     {
-        public void AddEdge( int from, int to )
+        public void AddEdge(int from, int to)
         {
             AddEdge(from, to, null);
         }
 
     }
-    public class GraphBuilder<N,E>
+    public class GraphBuilder<N, E>
     {
         private int _defaultDegree = 2;
         public int DefaultDegree
@@ -47,7 +47,7 @@ namespace CrawfisSoftware.Collections.Graph
             _nodeValues.Add(nodeValue);
         }
 
-        public void AddEdge( int from, int to, E edgeValue )
+        public void AddEdge(int from, int to, E edgeValue)
         {
             ValidateNode(from);
             ValidateNode(to);
@@ -58,9 +58,9 @@ namespace CrawfisSoftware.Collections.Graph
             _adjacencyLists[from].Add(to);
         }
 
-        internal void ValidateNode( int node )
+        internal void ValidateNode(int node)
         {
-            if( node < 0 || node > _adjacencyLists.Count )
+            if (node < 0 || node > _adjacencyLists.Count)
                 throw new ArgumentOutOfRangeException("The specified node does not exist.");
         }
 
@@ -69,7 +69,7 @@ namespace CrawfisSoftware.Collections.Graph
         /// </summary>
         /// <returns>An <typeparamref name="IGraph{int,int}"/>.</returns>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
-        public IGraph<int,int> GetGraph()
+        public IGraph<int, int> GetGraph()
         {
             return new SimpleGraph(_adjacencyLists);
         }

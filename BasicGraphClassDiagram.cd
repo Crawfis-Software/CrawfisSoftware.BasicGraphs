@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="CrawfisSoftware.Collections.Graph.Graph&lt;N, E&gt;" BaseTypeListCollapsed="true">
+    <Position X="3" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAgiAAgAAAAAAAAGCAAAAACAAAAAAAAIAAAgAAIAgA=</HashCode>
+      <FileName>Graph.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CrawfisSoftware.Collections.Graph.GraphBuilder">
+    <Position X="0.5" Y="5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GraphBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CrawfisSoftware.Collections.Graph.GraphBuilder&lt;N, E&gt;">
+    <Position X="0.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEgAAFAAKACAAABAAAAAAgAAAACAACAAQIBAA=</HashCode>
+      <FileName>GraphBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CrawfisSoftware.Collections.Graph.GraphEdge&lt;N, E&gt;" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AgAAEAAAAAAAAAAAAAAAAAAEAAAIJAAAAAAgAAAAABA=</HashCode>
+      <FileName>GraphEdge.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CrawfisSoftware.Collections.Graph.GraphNode&lt;VertexDataType, EdgeDataType&gt;">
+    <Position X="6.25" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAgAAACAAAAAAAAAAAQAAAIEAgACAAAgA=</HashCode>
+      <FileName>GraphNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CrawfisSoftware.Collections.Graph.SimpleGraph" BaseTypeListCollapsed="true">
+    <Position X="13" Y="0.5" Width="3.25" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Struct Name="CrawfisSoftware.Collections.Graph.SimpleGraph.Connection" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>SimpleGraph.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAggABgAAAAAAAAECAEAAAgAAAAAAAAIAAAgAQAAAA=</HashCode>
+      <FileName>SimpleGraph.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="CrawfisSoftware.Collections.Graph.IEdge&lt;N, E&gt;">
+    <Position X="6.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="CrawfisSoftware.Collections.Graph.IGraph&lt;N, E&gt;">
+    <Position X="9" Y="4" Width="3.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -3,17 +3,33 @@ using System.Collections.Generic;
 
 namespace CrawfisSoftware.Collections.Graph
 {
+    /// <summary>
+    /// Helper class used to construct a GraphBuilder where we do not care what the node or edge types are.
+    /// </summary>
     public class GraphBuilder : GraphBuilder<object, object>
     {
+        /// <summary>
+        /// Add an edge from node index <paramref name="from"/> to node index <paramref name="to"/>.
+        /// </summary>
+        /// <param name="from">Existing node index for the directed edge.</param>
+        /// <param name="to">Existing node index for the directed edge.</param>
         public void AddEdge(int from, int to)
         {
             AddEdge(from, to, null);
         }
 
     }
+    /// <summary>
+    /// Explicit graph building.
+    /// </summary>
+    /// <typeparam name="N">The node lable type.</typeparam>
+    /// <typeparam name="E">The edge label type.</typeparam>
     public class GraphBuilder<N, E>
     {
         private int _defaultDegree = 2;
+        /// <summary>
+        /// Specifies the default size of the Adjacency lists for each node.
+        /// </summary>
         public int DefaultDegree
         {
             get { return _defaultDegree; }
@@ -21,6 +37,9 @@ namespace CrawfisSoftware.Collections.Graph
         }
 
         private static int _defaultSize = 30;
+        /// <summary>
+        /// Specifies the default number of nodes in the resulting graph.
+        /// </summary>
         public static int DefaultSize
         {
             get { return _defaultSize; }
@@ -28,12 +47,18 @@ namespace CrawfisSoftware.Collections.Graph
         }
 
         private N _defaultNodeValue;
+        /// <summary>
+        /// Set or get a default value for all new nodes.
+        /// </summary>
         public N DefaultNodeValue
         {
             get { return _defaultNodeValue; }
             set { _defaultNodeValue = value; }
         }
         private IList<ICollection<int>> _adjacencyLists = new List<ICollection<int>>(DefaultSize);
+        /// <summary>
+        /// A a new node with a default node value.
+        /// </summary>
         public void AddNode()
         {
             AddNode(_defaultNodeValue);
@@ -41,12 +66,22 @@ namespace CrawfisSoftware.Collections.Graph
 
         // TODO: Switch this over to a null collection object for graphs that do not want this data.
         private IList<N> _nodeValues = new List<N>();
+        /// <summary>
+        /// Add a new node with the specified node value.
+        /// </summary>
+        /// <param name="nodeValue"></param>
         public void AddNode(N nodeValue)
         {
             _adjacencyLists.Add(new List<int>(DefaultDegree));
             _nodeValues.Add(nodeValue);
         }
 
+        /// <summary>
+        /// Add an edge from the 
+        /// </summary>
+        /// <param name="from">The node index of the starting edge node (directional).</param>
+        /// <param name="to">The node index of the ending edge node.</param>
+        /// <param name="edgeValue">An edge vale to assign to the resulting edge.</param>
         public void AddEdge(int from, int to, E edgeValue)
         {
             ValidateNode(from);

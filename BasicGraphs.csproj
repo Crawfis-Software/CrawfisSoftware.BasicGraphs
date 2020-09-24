@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompleteIndexedGraph.cs" />
     <Compile Include="Graph.cs" />
     <Compile Include="GraphBuilder.cs" />
     <Compile Include="GraphEdge.cs" />

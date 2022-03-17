@@ -103,7 +103,6 @@ namespace CrawfisSoftware.Collections.Graph
         /// Extract an <typeparamref name="IGraph{int,int}"/> from the builder.
         /// </summary>
         /// <returns>An <typeparamref name="IGraph{int,int}"/>.</returns>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
         public IGraph<int, int> GetGraph()
         {
             return new SimpleGraph(_adjacencyLists);

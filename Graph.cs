@@ -67,7 +67,7 @@ namespace CrawfisSoftware.Collections.Graph
             AddEdge(edgeData, fromNode, toNode);
         }
 
-        internal void AddEdge(E edgeData, GraphNode<N, E> fromNode, GraphNode<N, E> toNode)
+        internal void AddEdge(in E edgeData, GraphNode<N, E> fromNode, GraphNode<N, E> toNode)
         {
             GraphEdge<N, E> newEdge = new GraphEdge<N, E>(fromNode, toNode, edgeData);
             fromNode.AddEdge(newEdge);
@@ -189,7 +189,7 @@ namespace CrawfisSoftware.Collections.Graph
         /// <param name="fromNode">The node that the edge emanates from.</param>
         /// <param name="toNode">The node that the edge terminates at.</param>
         /// <returns>True if the edge exists in the graph. False otherwise.</returns>
-        public bool ContainsEdge(N fromNode, N toNode)
+        public bool ContainsEdge(in N fromNode, in N toNode)
         {
             bool contains = false;
             foreach (N node in Neighbors(fromNode))
@@ -209,7 +209,7 @@ namespace CrawfisSoftware.Collections.Graph
         /// <param name="fromNode">The node that the edge emanates from.</param>
         /// <param name="toNode">The node that the edge terminates at.</param>
         /// <returns>The edge.</returns>
-        public E GetEdgeLabel(N fromNode, N toNode)
+        public E GetEdgeLabel(in N fromNode, in N toNode)
         {
             E edge = default(E);
             TryGetEdge(fromNode, toNode, out edge);
@@ -224,7 +224,7 @@ namespace CrawfisSoftware.Collections.Graph
         /// <param name="edge">The resulting edge if the method was successful. A default
         /// value for the type if the edge could not be found.</param>
         /// <returns>True if the edge was found. False otherwise.</returns>
-        public bool TryGetEdge(N fromNode, N toNode, out E edge)
+        public bool TryGetEdge(in N fromNode, in N toNode, out E edge)
         {
             GraphNode<N, E> node;
             int index = vertexList.IndexOf(fromNode);
@@ -245,18 +245,12 @@ namespace CrawfisSoftware.Collections.Graph
             }
             return contains;
         }
-
         #endregion
 
         #region Member variables
         private static readonly int InitialGraphSize = 30;
-        private IList<N> vertexList = new List<N>(InitialGraphSize);
-        private IList<GraphNode<N, E>> nodeList = new List<GraphNode<N, E>>(InitialGraphSize);
+        private readonly IList<N> vertexList = new List<N>(InitialGraphSize);
+        private readonly IList<GraphNode<N, E>> nodeList = new List<GraphNode<N, E>>(InitialGraphSize);
         #endregion
-
-        //private object _lock = new object();
-        //private HashSet<GraphNode<T>> _nodeList = new HashSet<GraphNode<T>>();
-        //private HashSet<GraphEdge<T>> _edgeList = new HashSet<GraphEdge<T>>();
-
     }
 }

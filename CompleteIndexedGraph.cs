@@ -48,7 +48,7 @@ namespace CrawfisSoftware.Collections.Graph
         /// a node label (N).</param>
         /// <param name="edgeLabelFunc">A delegate (Func) that takes two node indices (ints) and 
         /// returns an edge label (E).</param>
-        public CompleteIndexedGraph(int numberOfNodes, Func<int, N> nodeLabelFunc, Func<int, int, E> edgeLabelFunc)
+        public CompleteIndexedGraph(int numberOfNodes, in Func<int, N> nodeLabelFunc,in Func<int, int, E> edgeLabelFunc)
         {
             this.NumberOfNodes = numberOfNodes;
             nodeFunction = nodeLabelFunc;

@@ -112,7 +112,7 @@ namespace CrawfisSoftware.Collections.Graph
         /// <param name="fromNode">The node that the edge emanates from.</param>
         /// <param name="toNode">The node that the edge terminates at.</param>
         /// <returns>True if the edge exists in the graph. False otherwise.</returns>
-        public bool ContainsEdge(int fromNode, int toNode)
+        public bool ContainsEdge(in int fromNode, in int toNode)
         {
             return _adjacencyList[fromNode].Contains(toNode);
         }
@@ -123,7 +123,7 @@ namespace CrawfisSoftware.Collections.Graph
         /// <param name="fromNode">The node that the edge emanates from.</param>
         /// <param name="toNode">The node that the edge terminates at.</param>
         /// <returns>The edge.</returns>
-        public int GetEdgeLabel(int fromNode, int toNode)
+        public int GetEdgeLabel(in int fromNode, in int toNode)
         {
             int result;
             if (!TryGetEdge(fromNode, toNode, out result))
@@ -140,7 +140,7 @@ namespace CrawfisSoftware.Collections.Graph
         /// <param name="edge">The resulting edge if the method was successful. A default
         /// value for the type if the edge could not be found.</param>
         /// <returns>True if the edge was found. False otherwise.</returns>
-        public bool TryGetEdge(int fromNode, int toNode, out int edge)
+        public bool TryGetEdge(in int fromNode, in int toNode, out int edge)
         {
             if (ContainsEdge(fromNode, toNode))
             {

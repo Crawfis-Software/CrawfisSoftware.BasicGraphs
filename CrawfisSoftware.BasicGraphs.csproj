@@ -6,7 +6,12 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DocumentationFile>bin\Debug\BasicGraphs.XML</DocumentationFile>
+    <DocumentationFile>$(SolutionDir)\Documentation\BasicGraphs.XML</DocumentationFile>
+    <OutputPath>$(SolutionDir)bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>$(SolutionDir)bin\Release\</OutputPath>
+    <DocumentationFile>$(SolutionDir)\Documentation\CrawfisSoftware.BasicGraphs.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\IGraph\CrawfisSoftware.IGraph.csproj" />

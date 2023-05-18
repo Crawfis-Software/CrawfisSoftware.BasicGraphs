@@ -10,6 +10,7 @@ namespace CrawfisSoftware.Collections.Graph
     /// </summary>
     /// <typeparam name="N">The type associated at each node. Called a node or node label</typeparam>
     /// <typeparam name="E">The type associated at each edge. Also called the edge label.</typeparam>   
+    /// // BUG: THis is wrong. The Node type is GraphNode{TVertex}
     public class Graph<N, E> : IGraph<N, E>
     {
         #region Properties

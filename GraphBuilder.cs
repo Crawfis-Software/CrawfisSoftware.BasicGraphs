@@ -22,7 +22,7 @@ namespace CrawfisSoftware.Collections.Graph
     /// <summary>
     /// Explicit graph building.
     /// </summary>
-    /// <typeparam name="N">The node lable type.</typeparam>
+    /// <typeparam name="N">The node label type.</typeparam>
     /// <typeparam name="E">The edge label type.</typeparam>
     public class GraphBuilder<N, E>
     {

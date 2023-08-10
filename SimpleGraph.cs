@@ -50,7 +50,7 @@ namespace CrawfisSoftware.Collections.Graph
 
         #region Implicit IGraph<int,int> Implementation
         /// <summary>
-        /// Iterator for the nodes in the graoh.
+        /// Iterator for the nodes in the graph.
         /// </summary>
         public IEnumerable<int> Nodes
         {

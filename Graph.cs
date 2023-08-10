@@ -78,7 +78,7 @@ namespace CrawfisSoftware.Collections.Graph
 
         #region IGraph<VertexDataType, EdgeDataType>
         /// <summary>
-        /// Iterator for the nodes in the graoh.
+        /// Iterator for the nodes in the graph.
         /// </summary>
         public IEnumerable<N> Nodes
         {

@@ -1,16 +1,13 @@
 using System;
 using System.Collections.Generic;
 
-//[assembly: SecurityPermission(SecurityAction.RequestMinimum, Execution = true)]
-//[assembly: PermissionSet(SecurityAction.RequestOptional, Name = "Nothing")]
 namespace CrawfisSoftware.Collections.Graph
 {
     /// <summary>
     /// A standard graph implementation of <typeparamref name="IGraph{N,E}"/>.
     /// </summary>
-    /// <typeparam name="N">The type associated at each node. Called a node or node label</typeparam>
+    /// <typeparam name="N">The type associated at each node. Called a node or node label. Must be unique.</typeparam>
     /// <typeparam name="E">The type associated at each edge. Also called the edge label.</typeparam>   
-    /// // BUG: THis is wrong. The Node type is GraphNode{TVertex}
     public class Graph<N, E> : IGraph<N, E>
     {
         #region Properties
@@ -46,7 +43,8 @@ namespace CrawfisSoftware.Collections.Graph
         /// <param name="from">The node label for the originating node.</param>
         /// <param name="to">The node label for the destination node.</param>
         /// <param name="edgeData">An edge label to associate with this edge.</param>
-        public void AddEdge(N from, N to, E edgeData)
+        /// <param name="undirected">If true (default) and edge is also created in the reverse direction.</param>
+        public void AddEdge(N from, N to, E edgeData, bool undirected = true)
         {
             int fromIndex = vertexList.IndexOf(from);
             if (fromIndex == -1)
@@ -56,23 +54,24 @@ namespace CrawfisSoftware.Collections.Graph
             if (toIndex == -1)
                 throw new ArgumentException("The specified node or vertex was not found in the graph.");
 
-            AddEdge(edgeData, fromIndex, toIndex);
+            AddEdge(edgeData, fromIndex, toIndex, undirected);
         }
 
         #region Implementation
-        private void AddEdge(E edgeData, int fromIndex, int toIndex)
+        private void AddEdge(E edgeData, int fromIndex, int toIndex, bool undirected)
         {
             GraphNode<N, E> fromNode = nodeList[fromIndex];
             GraphNode<N, E> toNode = nodeList[toIndex];
 
-            AddEdge(edgeData, fromNode, toNode);
+            AddEdge(edgeData, fromNode, toNode, undirected);
         }
 
-        internal void AddEdge(in E edgeData, GraphNode<N, E> fromNode, GraphNode<N, E> toNode)
+        internal void AddEdge(in E edgeData, GraphNode<N, E> fromNode, GraphNode<N, E> toNode, bool undirected)
         {
             GraphEdge<N, E> newEdge = new GraphEdge<N, E>(fromNode, toNode, edgeData);
             fromNode.AddEdge(newEdge);
-            toNode.AddEdge(newEdge);
+            if(undirected)
+                toNode.AddEdge(newEdge);
         }
         #endregion
 

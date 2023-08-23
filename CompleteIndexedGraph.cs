@@ -46,7 +46,7 @@ namespace CrawfisSoftware.Collections.Graph
         /// <param name="numberOfNodes">The number of nodes in this complete graph.</param>
         /// <param name="nodeLabelFunc">A delegate (Func) that takes a node index (int) and returns
         /// a node label (N).</param>
-        /// <param name="edgeLabelFunc">A delegate (Func) that takes two node indices (ints) and 
+        /// <param name="edgeLabelFunc">A delegate (Func) that takes two node indices (int's) and 
         /// returns an edge label (E).</param>
         public CompleteIndexedGraph(int numberOfNodes, in Func<int, N> nodeLabelFunc,in Func<int, int, E> edgeLabelFunc)
         {
@@ -58,7 +58,7 @@ namespace CrawfisSoftware.Collections.Graph
         /// <inheritdoc/>
         public bool ContainsEdge(int fromNode, int toNode)
         {
-            if (fromNode >= 0 && fromNode < NumberOfNodes && toNode >= 0 && toNode < NumberOfNodes)
+            if (fromNode >= 0 && fromNode < NumberOfNodes && toNode >= 0 && toNode < NumberOfNodes && fromNode != toNode)
                 return true;
             return false;
         }
@@ -82,7 +82,12 @@ namespace CrawfisSoftware.Collections.Graph
         /// <inheritdoc/>
         public IEnumerable<IIndexedEdge<E>> InEdges(int nodeIndex)
         {
-            return Edges;
+            for (int j = 0; j < NumberOfNodes; j++)
+            {
+                if (nodeIndex == j) continue;
+                E label = GetEdgeLabel(j, nodeIndex);
+                yield return new IndexedEdge<E>(j, nodeIndex, label);
+            }
         }
 
         /// <inheritdoc/>
@@ -94,7 +99,12 @@ namespace CrawfisSoftware.Collections.Graph
         /// <inheritdoc/>
         public IEnumerable<IIndexedEdge<E>> OutEdges(int nodeIndex)
         {
-            return Edges;
+            for (int j = 0; j < NumberOfNodes; j++)
+            {
+                if (nodeIndex == j) continue;
+                E label = GetEdgeLabel(nodeIndex, j);
+                yield return new IndexedEdge<E>(nodeIndex, j, label);
+            }
         }
 
         /// <inheritdoc/>
@@ -109,6 +119,7 @@ namespace CrawfisSoftware.Collections.Graph
             edge = default(E);
             if (fromNode < 0 || fromNode >= NumberOfNodes || toNode < 0 || toNode >= NumberOfNodes)
                 return false;
+            if(fromNode == toNode) return false;
             edge = edgeFunction(fromNode, toNode);
             return true;
         }

@@ -13,14 +13,14 @@ namespace CrawfisSoftware.Collections.Graph
         /// </summary>
         /// <param name="from">Existing node index for the directed edge.</param>
         /// <param name="to">Existing node index for the directed edge.</param>
-        public void AddEdge(int from, int to)
+        public void AddEdge(int from, int to, bool undirected = true)
         {
-            AddEdge(from, to, null);
+            AddEdge(from, to, null, undirected);
         }
 
     }
     /// <summary>
-    /// Explicit graph building.
+    /// Explicit graph building creating a SimpleGraph (which uses an adjacency list).
     /// </summary>
     /// <typeparam name="N">The node label type.</typeparam>
     /// <typeparam name="E">The edge label type.</typeparam>
@@ -59,9 +59,9 @@ namespace CrawfisSoftware.Collections.Graph
         /// <summary>
         /// A a new node with a default node value.
         /// </summary>
-        public void AddNode()
+        public int AddNode()
         {
-            AddNode(_defaultNodeValue);
+            return AddNode(_defaultNodeValue);
         }
 
         // TODO: Switch this over to a null collection object for graphs that do not want this data.
@@ -70,10 +70,11 @@ namespace CrawfisSoftware.Collections.Graph
         /// Add a new node with the specified node value.
         /// </summary>
         /// <param name="nodeValue"></param>
-        public void AddNode(N nodeValue)
+        public int AddNode(N nodeValue)
         {
             _adjacencyLists.Add(new List<int>(DefaultDegree));
             _nodeValues.Add(nodeValue);
+            return _adjacencyLists.Count - 1;
         }
 
         /// <summary>
@@ -82,15 +83,19 @@ namespace CrawfisSoftware.Collections.Graph
         /// <param name="from">The node index of the starting edge node (directional).</param>
         /// <param name="to">The node index of the ending edge node.</param>
         /// <param name="edgeValue">An edge vale to assign to the resulting edge.</param>
-        public void AddEdge(int from, int to, E edgeValue)
+        /// <param name="undirected">If true (default) and edge is also created in the reverse direction.</param>
+        public void AddEdge(int from, int to, E edgeValue, bool undirected = true)
         {
             ValidateNode(from);
             ValidateNode(to);
 
             if (_adjacencyLists[from].Contains(to))
                 throw new ArgumentException("The specified edge already exists.");
-
             _adjacencyLists[from].Add(to);
+            if (!undirected) return;
+
+            if (!_adjacencyLists[to].Contains(from))
+                _adjacencyLists[to].Add(from);
         }
 
         internal void ValidateNode(int node)

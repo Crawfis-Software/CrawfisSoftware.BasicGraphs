@@ -13,6 +13,7 @@ namespace CrawfisSoftware.Collections.Graph
         /// </summary>
         /// <param name="from">Existing node index for the directed edge.</param>
         /// <param name="to">Existing node index for the directed edge.</param>
+        /// <param name="undirected">If true (default) and edge is also created in the reverse direction.</param>
         public void AddEdge(int from, int to, bool undirected = true)
         {
             AddEdge(from, to, null, undirected);

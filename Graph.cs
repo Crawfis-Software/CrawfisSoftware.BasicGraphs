@@ -43,7 +43,7 @@ namespace CrawfisSoftware.Collections.Graph
         /// <param name="from">The node label for the originating node.</param>
         /// <param name="to">The node label for the destination node.</param>
         /// <param name="edgeData">An edge label to associate with this edge.</param>
-        /// <param name="undirected">If true (default) and edge is also created in the reverse direction.</param>
+        /// <param name="undirected">If true (default) an edge is also created in the reverse direction.</param>
         public void AddEdge(N from, N to, E edgeData, bool undirected = true)
         {
             int fromIndex = vertexList.IndexOf(from);
@@ -70,7 +70,7 @@ namespace CrawfisSoftware.Collections.Graph
         {
             GraphEdge<N, E> newEdge = new GraphEdge<N, E>(fromNode, toNode, edgeData);
             fromNode.AddEdge(newEdge);
-            if(undirected)
+            if (undirected)
                 toNode.AddEdge(newEdge);
         }
         #endregion

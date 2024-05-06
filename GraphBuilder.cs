@@ -13,7 +13,7 @@ namespace CrawfisSoftware.Collections.Graph
         /// </summary>
         /// <param name="from">Existing node index for the directed edge.</param>
         /// <param name="to">Existing node index for the directed edge.</param>
-        /// <param name="undirected">If true (default) and edge is also created in the reverse direction.</param>
+        /// <param name="undirected">If true (default) an edge is also created in the reverse direction.</param>
         public void AddEdge(int from, int to, bool undirected = true)
         {
             AddEdge(from, to, null, undirected);
@@ -84,7 +84,7 @@ namespace CrawfisSoftware.Collections.Graph
         /// <param name="from">The node index of the starting edge node (directional).</param>
         /// <param name="to">The node index of the ending edge node.</param>
         /// <param name="edgeValue">An edge vale to assign to the resulting edge.</param>
-        /// <param name="undirected">If true (default) and edge is also created in the reverse direction.</param>
+        /// <param name="undirected">If true (default) an edge is also created in the reverse direction.</param>
         public void AddEdge(int from, int to, E edgeValue, bool undirected = true)
         {
             ValidateNode(from);

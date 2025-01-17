@@ -1,3 +1,5 @@
+using CrawfisSoftware.Collections.BasicGraphs;
+
 using System;
 using System.Collections.Generic;
 
@@ -27,6 +29,8 @@ namespace CrawfisSoftware.Collections.Graph
     /// <typeparam name="E">The edge label type.</typeparam>
     public class GraphBuilder<N, E>
     {
+        private IList<ICollection<IIndexedEdge<E>>> _adjacencyLists = new List<ICollection<IIndexedEdge<E>>>(DefaultSize);
+        private bool _isUndirected = true;
         private int _defaultDegree = 2;
         /// <summary>
         /// Specifies the default size of the Adjacency lists for each node.
@@ -47,25 +51,19 @@ namespace CrawfisSoftware.Collections.Graph
             set { _defaultSize = value; }
         }
 
-        private N _defaultNodeValue;
         /// <summary>
         /// Set or get a default value for all new nodes.
         /// </summary>
-        public N DefaultNodeValue
-        {
-            get { return _defaultNodeValue; }
-            set { _defaultNodeValue = value; }
-        }
-        private IList<ICollection<int>> _adjacencyLists = new List<ICollection<int>>(DefaultSize);
+        public N DefaultNodeValue { get; set; } = default(N);
+
         /// <summary>
         /// A a new node with a default node value.
         /// </summary>
         public int AddNode()
         {
-            return AddNode(_defaultNodeValue);
+            return AddNode(DefaultNodeValue);
         }
 
-        // TODO: Switch this over to a null collection object for graphs that do not want this data.
         private IList<N> _nodeValues = new List<N>();
         /// <summary>
         /// Add a new node with the specified node value.
@@ -73,7 +71,7 @@ namespace CrawfisSoftware.Collections.Graph
         /// <param name="nodeValue"></param>
         public int AddNode(N nodeValue)
         {
-            _adjacencyLists.Add(new List<int>(DefaultDegree));
+            _adjacencyLists.Add(new List<IIndexedEdge<E>>(DefaultDegree));
             _nodeValues.Add(nodeValue);
             return _adjacencyLists.Count - 1;
         }
@@ -90,13 +88,12 @@ namespace CrawfisSoftware.Collections.Graph
             ValidateNode(from);
             ValidateNode(to);
 
-            if (_adjacencyLists[from].Contains(to))
-                throw new ArgumentException("The specified edge already exists.");
-            _adjacencyLists[from].Add(to);
-            if (!undirected) return;
+            var forwardEdge = new IndexedEdge<E>(from, to, edgeValue);
+            _adjacencyLists[from].Add(forwardEdge);
+            if (!undirected) { _isUndirected = false; return; }
 
-            if (!_adjacencyLists[to].Contains(from))
-                _adjacencyLists[to].Add(from);
+            var backwardEdge = new IndexedEdge<E>(to, from, edgeValue);
+            _adjacencyLists[to].Add(backwardEdge);
         }
 
         internal void ValidateNode(int node)
@@ -106,12 +103,12 @@ namespace CrawfisSoftware.Collections.Graph
         }
 
         /// <summary>
-        /// Extract an <typeparamref name="IGraph{int,int}"/> from the builder.
+        /// Extract an <c>IIndexedGraph</c> from the builder.
         /// </summary>
-        /// <returns>An <typeparamref name="IGraph{int,int}"/>.</returns>
-        public IGraph<int, int> GetGraph()
+        /// <returns>An <c>IIndexedGraph</c>.</returns>
+        public IIndexedGraph<N, E> GetGraph()
         {
-            return new SimpleGraph(_adjacencyLists);
+            return new AdjacencyListIndexedGraph<N, E>(_adjacencyLists, _nodeValues, _isUndirected);
         }
 
         /// <summary>
@@ -119,11 +116,11 @@ namespace CrawfisSoftware.Collections.Graph
         /// </summary>
         public void Optimize()
         {
-            foreach (ICollection<int> list in _adjacencyLists)
+            foreach (ICollection<IIndexedEdge<E>> list in _adjacencyLists)
             {
-                ((List<int>)list).TrimExcess();
+                ((List<IIndexedEdge<E>>)list).TrimExcess();
             }
-            ((List<ICollection<int>>)_adjacencyLists).TrimExcess();
+            ((List<ICollection<IIndexedEdge<E>>>)_adjacencyLists).TrimExcess();
         }
 
         /// <summary>

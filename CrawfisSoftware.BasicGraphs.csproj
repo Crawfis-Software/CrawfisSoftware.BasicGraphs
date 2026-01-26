@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -24,4 +25,20 @@
   <ItemGroup>
     <PackageReference Include="CrawfisSoftware.IGraph" Version="0.1.*" />
   </ItemGroup>
+  <PropertyGroup>
+    <PackageId>CrawfisSoftware.BasicGraphs</PackageId>
+    <Authors>Crawfis Software</Authors>
+    <Description>Basic Graph implementation of the CrawfisSoftware.IGraph interface using an adjacency list</Description>
+    <RepositoryUrl>https://github.com/Crawfis-Software/CrawfisSoftware.BasicGraphs</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>https://github.com/Crawfis-Software/CrawfisSoftware.BasicGraphs</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReleaseNotes>Please see CHANGELOG.md for release details.</PackageReleaseNotes>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IsPackable>true</IsPackable>
+  </PropertyGroup>
 </Project>
